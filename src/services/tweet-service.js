@@ -5,6 +5,7 @@ class TweetService {
         this.tweetRepository = new TweetRepository();
         this.hashtagRepository = new HashtagRepository();
     }
+    
 
     async create(data) {
         const content = data.content;

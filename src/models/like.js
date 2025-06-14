@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 const likeSchema=mongoose.Schema({
     onModel:{
         type:String,
