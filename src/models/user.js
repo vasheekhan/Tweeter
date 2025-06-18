@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from 'bcrypt';
 const userSchema=mongoose.Schema({
     email:{
         type:String,
@@ -15,5 +16,12 @@ const userSchema=mongoose.Schema({
 }
 
 })
+userSchema.pre('save', function (next) {
+    const user = this; //current user
+    const SALT = bcrypt.genSaltSync(9); //function for generating salt with number of rounds
+    const encryptedPassword = bcrypt.hashSync(user.password, SALT);
+    user.password = encryptedPassword;
+    next(); //next function
+});
 const User=mongoose.model("User",userSchema);
 export default User;
